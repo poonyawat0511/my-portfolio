@@ -31,7 +31,7 @@ export default function Home() {
       <div className="flex items-center justify-center gap-5">
         <div className="flex flex-col items-start justify-start h-[350px] px-10">
           <h1 className="text-5xl font-extrabold leading-tight">
-            Hi, I'm{" "}
+            Hi, I&apos;m
             <span className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
               Poonyawat
             </span>
