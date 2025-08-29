@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Aurora from "@/Backgrounds/Aurora/Aurora";
 import { AuroraWrapper } from "./AuroraWrapper";
-import { Button, Link, Card, CardHeader, Image } from "@heroui/react";
+import { Button, Link, Card, CardHeader } from "@heroui/react";
 import { ChevronRightIcon } from "@/components/icons/ChevronRightIcon";
 import { motion } from "framer-motion";
 import GradientText from "@/TextAnimations/GradientText/GradientText";
@@ -18,6 +18,7 @@ import { SiMysql } from "react-icons/si";
 import { SiBootstrap } from "react-icons/si";
 import Magnet from "@/Animations/Magnet/Magnet";
 import { FaGolang } from "react-icons/fa6";
+import Image from "next/image";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -136,7 +137,8 @@ export default function Home() {
             <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/HLLC2025/1.png"
@@ -144,7 +146,8 @@ export default function Home() {
               </Card>
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/HLLC2025/10.jpeg"
@@ -152,7 +155,8 @@ export default function Home() {
               </Card>
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/HLLC2025/3.jpeg"
@@ -164,7 +168,8 @@ export default function Home() {
                   <h4 className="text-black font-medium text-2xl">Acme camera</h4>
                 </CardHeader>
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card example background"
                   className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
                   src="/HLLC2025/11.jpeg"
@@ -172,7 +177,8 @@ export default function Home() {
               </Card>
               <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Relaxing app background"
                   className="z-0 w-full h-full object-cover"
                   src="/HLLC2025/2.png"
@@ -221,7 +227,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
             <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/HLLC2024/2.png"
@@ -229,7 +236,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
               </Card>
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/HLLC2024/3.png"
@@ -237,7 +245,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
               </Card>
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/HLLC2024/4.png"
@@ -245,7 +254,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
               </Card>
               <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card example background"
                   className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
                   src="/HLLC2024/5.png"
@@ -253,7 +263,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
               </Card>
               <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Relaxing app background"
                   className="z-0 w-full h-full object-cover"
                   src="/HLLC2024/6.png"
@@ -275,7 +286,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
             <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/MaeChanProject/2.png"
@@ -283,7 +295,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
               </Card>
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/MaeChanProject/3.png"
@@ -291,7 +304,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
               </Card>
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/MaeChanProject/4.png"
@@ -299,7 +313,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
               </Card>
               <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card example background"
                   className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
                   src="/MaeChanProject/5.png"
@@ -311,7 +326,8 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
                   <h4 className="text-white/90 font-medium text-xl">Your checklist for better sleep</h4>
                 </CardHeader>
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Relaxing app background"
                   className="z-0 w-full h-full object-cover"
                   src="/MaeChanProject/6.png"
@@ -362,7 +378,8 @@ This project is developed by a team of four students, and I am responsible as bo
             <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/CafeManagement/2.png"
@@ -370,7 +387,8 @@ This project is developed by a team of four students, and I am responsible as bo
               </Card>
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/CafeManagement/3.png"
@@ -378,7 +396,8 @@ This project is developed by a team of four students, and I am responsible as bo
               </Card>
               <Card className="col-span-12 sm:col-span-4 h-[300px]">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card background"
                   className="z-0 w-full h-full object-cover"
                   src="/CafeManagement/4.png"
@@ -386,7 +405,8 @@ This project is developed by a team of four students, and I am responsible as bo
               </Card>
               <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Card example background"
                   className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
                   src="/CafeManagement/5.png"
@@ -394,7 +414,8 @@ This project is developed by a team of four students, and I am responsible as bo
               </Card>
               <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
                 <Image
-                  removeWrapper
+                  width={200}
+                  height={200}
                   alt="Relaxing app background"
                   className="z-0 w-full h-full object-cover"
                   src="/CafeManagement/6.png"
