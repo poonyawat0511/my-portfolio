@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import Aurora from "@/Backgrounds/Aurora/Aurora";
+import Aurora from "@/components/react-bits/Backgrounds/Aurora/Aurora";
 import { AuroraWrapper } from "./AuroraWrapper";
 import { Button, Link, Card, CardHeader } from "@heroui/react";
 import { ChevronRightIcon } from "@/components/icons/ChevronRightIcon";
 import { motion } from "framer-motion";
-import GradientText from "@/TextAnimations/GradientText/GradientText";
+import GradientText from "@/components/react-bits/TextAnimations/GradientText/GradientText";
 import ResumeModal from "@/components/modals/ResumeModal";
 import ProjectInfoCard from "@/components/cards/ProjectInfoCard";
 import { SiApachekafka, SiSpringboot, SiNextdotjs } from "react-icons/si";
@@ -16,9 +16,41 @@ import { SiNestjs, SiMongodb, SiNuxtdotjs, SiVuetify, SiSocketdotio } from "reac
 import { SiReact, SiExpo } from "react-icons/si";
 import { SiMysql } from "react-icons/si";
 import { SiBootstrap } from "react-icons/si";
-import Magnet from "@/Animations/Magnet/Magnet";
+import Magnet from "@/components/react-bits/Animations/Magnet/Magnet";
 import { FaGolang } from "react-icons/fa6";
 import Image from "next/image";
+
+/** Reusable next/image wrapper for sharp, responsive images */
+function ResponsiveImage({
+  src,
+  alt,
+  priority = false,
+  className = "",
+  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px",
+  loading,
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+  className?: string;
+  sizes?: string;
+  loading?: "lazy" | "eager";
+}) {
+  return (
+    <div className={`relative w-full h-48 sm:h-64 lg:h-[300px] ${className}`}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        quality={90}
+        className="object-cover rounded-inherit"
+        priority={priority}
+        loading={priority ? "eager" : loading ?? "lazy"}
+      />
+    </div>
+  );
+}
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -28,40 +60,43 @@ export default function Home() {
       <AuroraWrapper>
         <Aurora colorStops={["#030b0e", "#124587", "#A22040"]} speed={1} />
       </AuroraWrapper>
-      <div className="flex items-center justify-center gap-5">
-        <div className="flex flex-col items-start justify-start h-[350px] px-10">
-          <h1 className="text-5xl font-extrabold leading-tight">
-            Hi, I&apos;m
+
+      {/* HERO: stacked on mobile, side-by-side on md+ */}
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-5 px-4 md:px-6">
+        {/* Left: Intro */}
+        <div className="flex flex-col items-start justify-start md:h-[350px] px-2 md:px-10 max-w-[750px]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+            Hi, I&apos;m{" "}
             <span className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
               Poonyawat
             </span>
             <br />
-            <span className="text-3xl font-semibold text-gray-200">
-              A 4rd year Software Engineering<br />
+            <span className="text-lg sm:text-2xl md:text-3xl font-semibold text-gray-200">
+              A 4<span className="align-super text-sm">th</span> year Software Engineering
+              <br className="hidden sm:block" />
               student at Mae Fah Luang University (MFU)
             </span>
           </h1>
-          <div className="flex flex-row gap-4 mt-10">
+
+          <div className="flex flex-row gap-3 sm:gap-4 mt-6 sm:mt-8">
             <Button onPress={() => setOpen(true)} className="rounded-full flex items-center gap-2">
               Resume
               <span className="rounded-full p-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 flex items-center justify-center">
                 <ChevronRightIcon className="w-4 h-4 text-white" />
               </span>
             </Button>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
+
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 300 }}>
               <Button
                 as={Link}
                 href="https://github.com/poonyawat0511"
                 className="rounded-full flex items-center gap-2 text-white 
-               bg-transparent hover:bg-transparent active:bg-transparent focus:bg-transparent 
-               data-[hover=true]:bg-transparent focus-visible:bg-transparent"
+                  bg-transparent hover:bg-transparent active:bg-transparent focus:bg-transparent 
+                  data-[hover=true]:bg-transparent focus-visible:bg-transparent"
                 variant="light"
               >
                 <span className="rounded-full p-2 bg-white flex items-center justify-center">
+                  {/* Keep img for logo; small enough not to benefit from next/image */}
                   <img src="/github.svg" alt="GitHub" className="w-5 h-5" />
                 </span>
                 Github
@@ -70,121 +105,84 @@ export default function Home() {
           </div>
         </div>
 
-
-        <div className="flex-1 items-start p-10 flex">
-          <div>
+        {/* Right: Work Experience preview (grid) */}
+        <div className="flex-1 items-start p-0 md:p-10 flex w-full">
+          <div className="w-full">
             <GradientText
               colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
               animationSpeed={2}
               showBorder={false}
-              className="text-3xl font-bold ml-[11rem] mb-10"
+              className="text-2xl sm:text-3xl font-bold md:ml-[11rem] mb-4 sm:mb-6 text-center md:text-left"
             >
               Work Experience
             </GradientText>
-            <div className="grid grid-cols-2 gap-10">
+
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-10">
               <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <Image
+                <ResponsiveImage
                   src="/HLLC2025/2.png"
                   alt="HLLC 2025 Project Preview"
-                  width={300}
-                  height={300}
-                  className="object-cover w-full h-full rounded-tl-[5rem] rounded-br-[5rem]"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </Magnet>
               <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <Image
+                <ResponsiveImage
                   src="/HLLC2024/6.png"
                   alt="HLLC 2024 Project Preview"
-                  width={300}
-                  height={300}
-                  className="object-cover w-full h-full rounded-tl-[5rem] rounded-br-[5rem]"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </Magnet>
               <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <Image
-                  src="/MaeChanProject/1.png"
-                  alt="MaeChan Project Preview"
-                  width={300}
-                  height={300}
-                  className="object-cover w-full h-full rounded-tl-[5rem] rounded-br-[5rem]"
-                />
+                <ResponsiveImage src="/MaeChanProject/1.png" alt="MaeChan Project Preview" />
               </Magnet>
               <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <Image
-                  src="/CafeManagement/1.png"
-                  alt="Cafe Management Preview"
-                  width={300}
-                  height={300}
-                  className="object-cover w-full h-full rounded-tl-[5rem] rounded-br-[5rem]"
-                />
+                <ResponsiveImage src="/CafeManagement/1.png" alt="Cafe Management Preview" />
               </Magnet>
             </div>
           </div>
         </div>
       </div>
 
-      <div>
-        {/* 1st Projects preview */}
+      {/* PROJECTS */}
+      <div className="w-full px-4 md:px-0">
+        {/* Project 1 */}
         <motion.div
           id="project-1"
-          className="w-full flex justify-start items-center mt-[5rem] scroll-mt-[12rem]"
+          className="w-full flex flex-col lg:flex-row justify-start items-center mt-16 md:mt-20 scroll-mt-48"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="flex justify-between items-center w-full gap-4 p-10">
-            <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/HLLC2025/1.png"
-                />
+          <div className="flex flex-col-reverse lg:flex-row justify-between items-center w-full gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
+            {/* image grid */}
+            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 grid-rows-2 px-0 md:px-8">
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/HLLC2025/1.png" alt="HLLC 2025" />
               </Card>
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/HLLC2025/10.jpeg"
-                />
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/HLLC2025/10.jpeg" alt="HLLC 2025" />
               </Card>
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/HLLC2025/3.jpeg"
-                />
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/HLLC2025/3.jpeg" alt="HLLC 2025" />
               </Card>
-              <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5">
                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                   <p className="text-tiny text-white/60 uppercase font-bold">New</p>
                   <h4 className="text-black font-medium text-2xl">Acme camera</h4>
                 </CardHeader>
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card example background"
-                  className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-                  src="/HLLC2025/11.jpeg"
-                />
+                <ResponsiveImage src="/HLLC2025/11.jpeg" alt="HLLC 2025" />
               </Card>
-              <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Relaxing app background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/HLLC2025/2.png"
-                />
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
+                <ResponsiveImage src="/HLLC2025/2.png" alt="HLLC 2025" />
               </Card>
             </div>
+
+            {/* info */}
             <ProjectInfoCard
               title="HLLC–2025 On Campus"
               subtitle={`Developed and implemented core backend services for HLLC, an activity tracker for
@@ -201,16 +199,17 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
             />
           </div>
         </motion.div>
-        {/* 2st Projects preview */}
+
+        {/* Project 2 */}
         <motion.div
           id="project-2"
-          className="w-full flex justify-start items-center mt-[15rem] scroll-mt-[12rem]"
+          className="w-full flex flex-col lg:flex-row justify-start items-center mt-24 scroll-mt-48"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="w-full flex justify-between items-center p-10">
+          <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
             <ProjectInfoCard
               title="HLLC–2024 On Campus"
               subtitle={`Developed and implemented core backend services for HLLC, 
@@ -224,114 +223,60 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
                 { name: "Socket.io", icon: <SiSocketdotio className="w-6 h-6 text-[#010101]" /> },
               ]}
             />
-            <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/HLLC2024/2.png"
-                />
+
+            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 grid-rows-2 px-0 md:px-8">
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/HLLC2024/2.png" alt="HLLC 2024" />
               </Card>
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/HLLC2024/3.png"
-                />
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/HLLC2024/3.png" alt="HLLC 2024" />
               </Card>
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/HLLC2024/4.png"
-                />
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/HLLC2024/4.png" alt="HLLC 2024" />
               </Card>
-              <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card example background"
-                  className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-                  src="/HLLC2024/5.png"
-                />
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5">
+                <ResponsiveImage src="/HLLC2024/5.png" alt="HLLC 2024" />
               </Card>
-              <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Relaxing app background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/HLLC2024/6.png"
-                />
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
+                <ResponsiveImage src="/HLLC2024/6.png" alt="HLLC 2024" />
               </Card>
             </div>
           </div>
         </motion.div>
-        {/* 3st Projects preview */}
+
+        {/* Project 3 */}
         <motion.div
           id="project-3"
-          className="w-full flex justify-start items-center mt-[15rem] scroll-mt-[12rem]"
+          className="w-full flex flex-col lg:flex-row justify-start items-center mt-24 scroll-mt-48"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="w-full flex justify-between items-center p-10">
-            <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/MaeChanProject/2.png"
-                />
+          <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
+            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 grid-rows-2 px-0 md:px-8">
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/MaeChanProject/2.png" alt="MaeChan Project" />
               </Card>
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/MaeChanProject/3.png"
-                />
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/MaeChanProject/3.png" alt="MaeChan Project" />
               </Card>
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/MaeChanProject/4.png"
-                />
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/MaeChanProject/4.png" alt="MaeChan Project" />
               </Card>
-              <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card example background"
-                  className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-                  src="/MaeChanProject/5.png"
-                />
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5">
+                <ResponsiveImage src="/MaeChanProject/5.png" alt="MaeChan Project" />
               </Card>
-              <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                   <p className="text-tiny text-white/60 uppercase font-bold">Your day your way</p>
                   <h4 className="text-white/90 font-medium text-xl">Your checklist for better sleep</h4>
                 </CardHeader>
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Relaxing app background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/MaeChanProject/6.png"
-                />
+                <ResponsiveImage src="/MaeChanProject/6.png" alt="MaeChan Project" />
               </Card>
             </div>
 
@@ -346,21 +291,21 @@ This project is developed by a team of four students, and I am responsible as bo
                 { name: "Next.js", icon: <SiNextdotjs className="w-6 h-6 text-black" /> },
                 { name: "Hero UI", icon: <FaPalette className="w-6 h-6 text-[#06b6d4]" /> },
                 { name: "Camunda", icon: <SiCamunda className="w-6 h-6 text-[#FF4F00]" /> },
-
               ]}
             />
           </div>
         </motion.div>
-        {/* 4st Projects preview */}
+
+        {/* Project 4 */}
         <motion.div
           id="project-4"
-          className="w-full flex justify-start items-center mt-[15rem] scroll-mt-[12rem] mb-[10rem]"
+          className="w-full flex flex-col lg:flex-row justify-start items-center mt-24 mb-24 scroll-mt-48"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="w-full flex justify-between items-center p-10">
+          <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
             <ProjectInfoCard
               title="Cafe Management"
               subtitle={`The Cafe Management System is a web application developed by second-year Software Engineering students at Mae Fah Luang University (MFU).
@@ -375,56 +320,30 @@ This project is developed by a team of four students, and I am responsible as bo
                 { name: "Bootstrap", icon: <SiBootstrap className="w-6 h-6 text-[#7952B3]" /> },
               ]}
             />
-            <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-2 px-8">
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/CafeManagement/2.png"
-                />
+
+            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 grid-rows-2 px-0 md:px-8">
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/CafeManagement/2.png" alt="Cafe Management" />
               </Card>
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/CafeManagement/3.png"
-                />
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/CafeManagement/3.png" alt="Cafe Management" />
               </Card>
-              <Card className="col-span-12 sm:col-span-4 h-[300px]">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/CafeManagement/4.png"
-                />
+              <Card className="col-span-12 sm:col-span-4">
+                <ResponsiveImage src="/CafeManagement/4.png" alt="Cafe Management" />
               </Card>
-              <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Card example background"
-                  className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-                  src="/CafeManagement/5.png"
-                />
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5">
+                <ResponsiveImage src="/CafeManagement/5.png" alt="Cafe Management" />
               </Card>
-              <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-7">
-                <Image
-                  width={200}
-                  height={200}
-                  alt="Relaxing app background"
-                  className="z-0 w-full h-full object-cover"
-                  src="/CafeManagement/6.png"
-                />
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
+                <ResponsiveImage src="/CafeManagement/6.png" alt="Cafe Management" />
               </Card>
             </div>
           </div>
         </motion.div>
       </div>
+
       {/* pdf modal */}
       <ResumeModal isOpen={open} onClose={() => setOpen(false)} />
     </div>

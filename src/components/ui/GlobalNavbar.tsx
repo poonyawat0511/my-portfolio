@@ -11,7 +11,7 @@ import {
     Link,
     Button,
 } from "@heroui/react";
-import RotatingText from "@/TextAnimations/RotatingText/RotatingText";
+import RotatingText from "@/components/react-bits/TextAnimations/RotatingText/RotatingText";
 
 const menuItems = [
     "Profile",
