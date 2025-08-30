@@ -19,9 +19,11 @@ import Magnet from "@/components/react-bits/Animations/Magnet/Magnet";
 import { FaGolang } from "react-icons/fa6";
 import { ResponsiveImage } from "@/components/cards/ResponsiveImage";
 import { BiChevronRight } from "react-icons/bi";
+import SkillsModal from "@/components/modals/SkillsModal";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
+  const [skillModal, setSkillModal] = useState(false);
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-start text-white pt-24 overflow-hidden">
@@ -76,7 +78,7 @@ export default function Home() {
         </div>
 
         {/* Right: Work Experience preview (grid) */}
-        <div className="px-0 md:px-10 w-full">
+        <div className="px-0 md:px-10 w-full hidden md:block">
           <div className="w-full flex flex-col items-center md:items-start">
             <GradientText
               colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
@@ -260,7 +262,7 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
+          <div className="w-full flex flex-col-reverse lg:flex-row justify-between items-center gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
             <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 px-0 md:px-8">
               <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
                 <CardBody className="p-0">
@@ -371,6 +373,7 @@ This project is developed by a team of four students, and I am responsible as bo
 
       {/* pdf modal */}
       <ResumeModal isOpen={open} onClose={() => setOpen(false)} />
+      <SkillsModal isOpen={skillModal} onClose={() => setSkillModal(false)} />
     </div>
   );
 }
