@@ -15,7 +15,6 @@ import RotatingText from "@/components/react-bits/TextAnimations/RotatingText/Ro
 
 const menuItems = [
     { label: "Home", href: "/" },
-    { label: "Work Experience", href: "#work-experience" },
     { label: "Skills", href: "#skills" },
     { label: "Contact", href: "#contact" },
 ];
