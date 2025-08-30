@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import Aurora from "@/components/react-bits/Backgrounds/Aurora/Aurora";
 import { AuroraWrapper } from "./AuroraWrapper";
-import { Button, Link, Card, CardHeader } from "@heroui/react";
-import { ChevronRightIcon } from "@/components/icons/ChevronRightIcon";
+import { Button, Link, Card, CardHeader, CardBody } from "@heroui/react";
 import { motion } from "framer-motion";
 import GradientText from "@/components/react-bits/TextAnimations/GradientText/GradientText";
 import ResumeModal from "@/components/modals/ResumeModal";
@@ -18,39 +17,8 @@ import { SiMysql } from "react-icons/si";
 import { SiBootstrap } from "react-icons/si";
 import Magnet from "@/components/react-bits/Animations/Magnet/Magnet";
 import { FaGolang } from "react-icons/fa6";
-import Image from "next/image";
-
-/** Reusable next/image wrapper for sharp, responsive images */
-function ResponsiveImage({
-  src,
-  alt,
-  priority = false,
-  className = "",
-  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px",
-  loading,
-}: {
-  src: string;
-  alt: string;
-  priority?: boolean;
-  className?: string;
-  sizes?: string;
-  loading?: "lazy" | "eager";
-}) {
-  return (
-    <div className={`relative w-full h-48 sm:h-64 lg:h-[300px] ${className}`}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes={sizes}
-        quality={90}
-        className="object-cover rounded-inherit"
-        priority={priority}
-        loading={priority ? "eager" : loading ?? "lazy"}
-      />
-    </div>
-  );
-}
+import { ResponsiveImage } from "@/components/cards/ResponsiveImage";
+import { BiChevronRight } from "react-icons/bi";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -61,10 +29,10 @@ export default function Home() {
         <Aurora colorStops={["#030b0e", "#124587", "#A22040"]} speed={1} />
       </AuroraWrapper>
 
-      {/* HERO: stacked on mobile, side-by-side on md+ */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-5 px-4 md:px-6">
+      {/* HERO: full height (minus navbar) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-8 md:gap-5 px-4 md:px-6 min-h-[calc(100vh-6rem)]">
         {/* Left: Intro */}
-        <div className="flex flex-col items-start justify-start md:h-[350px] px-2 md:px-10 max-w-[750px]">
+        <div className="flex flex-col items-start justify-center px-2 md:px-10 max-w-[750px]">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
             Hi, I&apos;m{" "}
             <span className="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
@@ -79,12 +47,14 @@ export default function Home() {
           </h1>
 
           <div className="flex flex-row gap-3 sm:gap-4 mt-6 sm:mt-8">
-            <Button onPress={() => setOpen(true)} className="rounded-full flex items-center gap-2">
-              Resume
-              <span className="rounded-full p-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 flex items-center justify-center">
-                <ChevronRightIcon className="w-4 h-4 text-white" />
-              </span>
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 300 }}>
+              <Button onPress={() => setOpen(true)} className="rounded-full flex items-center gap-2">
+                Resume
+                <span className="rounded-full p-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 flex items-center justify-center">
+                  <BiChevronRight className="w-4 h-4 text-white" />
+                </span>
+              </Button>
+            </motion.div>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 300 }}>
               <Button
@@ -106,39 +76,56 @@ export default function Home() {
         </div>
 
         {/* Right: Work Experience preview (grid) */}
-        <div className="flex-1 items-start p-0 md:p-10 flex w-full">
-          <div className="w-full">
+        <div className="px-0 md:px-10 w-full">
+          <div className="w-full flex flex-col items-center md:items-start">
             <GradientText
               colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
               animationSpeed={2}
               showBorder={false}
-              className="text-2xl sm:text-3xl font-bold md:ml-[11rem] mb-4 sm:mb-6 text-center md:text-left"
+              className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center md:text-left"
             >
               Work Experience
             </GradientText>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-10 w-full">
               <Magnet padding={10} disabled={false} magnetStrength={2}>
                 <ResponsiveImage
                   src="/HLLC2025/2.png"
                   alt="HLLC 2025 Project Preview"
                   priority
+                  aspect="16/9"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  rounded="rounded-tl-[3rem] rounded-br-[3rem]"
                 />
               </Magnet>
+
               <Magnet padding={10} disabled={false} magnetStrength={2}>
                 <ResponsiveImage
                   src="/HLLC2024/6.png"
                   alt="HLLC 2024 Project Preview"
                   priority
+                  aspect="16/9"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  rounded="rounded-tl-[3rem] rounded-br-[3rem]"
                 />
               </Magnet>
+
               <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <ResponsiveImage src="/MaeChanProject/1.png" alt="MaeChan Project Preview" />
+                <ResponsiveImage
+                  src="/MaeChanProject/1.png"
+                  alt="MaeChan Project Preview"
+                  aspect="16/9"
+                  rounded="rounded-tl-[3rem] rounded-br-[3rem]"
+                />
               </Magnet>
+
               <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <ResponsiveImage src="/CafeManagement/1.png" alt="Cafe Management Preview" />
+                <ResponsiveImage
+                  src="/CafeManagement/1.png"
+                  alt="Cafe Management Preview"
+                  aspect="16/9"
+                  rounded="rounded-tl-[3rem] rounded-br-[3rem]"
+                />
               </Magnet>
             </div>
           </div>
@@ -150,7 +137,7 @@ export default function Home() {
         {/* Project 1 */}
         <motion.div
           id="project-1"
-          className="w-full flex flex-col lg:flex-row justify-start items-center mt-16 md:mt-20 scroll-mt-48"
+          className="w-full min-h-screen flex items-center justify-start scroll-mt-48"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -158,27 +145,35 @@ export default function Home() {
         >
           <div className="flex flex-col-reverse lg:flex-row justify-between items-center w-full gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
             {/* image grid */}
-            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 grid-rows-2 px-0 md:px-8">
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/HLLC2025/1.png" alt="HLLC 2025" />
-              </Card>
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/HLLC2025/10.jpeg" alt="HLLC 2025" />
-              </Card>
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/HLLC2025/3.jpeg" alt="HLLC 2025" />
+            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 px-0 md:px-8">
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2025/1.png" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5">
-                <CardHeader className="absolute z-10 top-1 flex-col items-start">
-                  <p className="text-tiny text-white/60 uppercase font-bold">New</p>
-                  <h4 className="text-black font-medium text-2xl">Acme camera</h4>
-                </CardHeader>
-                <ResponsiveImage src="/HLLC2025/11.jpeg" alt="HLLC 2025" />
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2025/10.jpeg" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
-                <ResponsiveImage src="/HLLC2025/2.png" alt="HLLC 2025" />
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2025/3.jpeg" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
+              </Card>
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2025/7.jpeg" alt="HLLC 2025" aspect="16/9" rounded="rounded-none" />
+                </CardBody>
+              </Card>
+
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2025/2.png" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
             </div>
 
@@ -203,7 +198,7 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
         {/* Project 2 */}
         <motion.div
           id="project-2"
-          className="w-full flex flex-col lg:flex-row justify-start items-center mt-24 scroll-mt-48"
+          className="w-full min-h-screen flex items-center justify-start scroll-mt-48"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -224,23 +219,33 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
               ]}
             />
 
-            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 grid-rows-2 px-0 md:px-8">
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/HLLC2024/2.png" alt="HLLC 2024" />
+            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 px-0 md:px-8">
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2024/2.png" alt="HLLC 2024" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/HLLC2024/3.png" alt="HLLC 2024" />
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2024/3.png" alt="HLLC 2024" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/HLLC2024/4.png" alt="HLLC 2024" />
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2024/4.png" alt="HLLC 2024" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5">
-                <ResponsiveImage src="/HLLC2024/5.png" alt="HLLC 2024" />
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2024/5.png" alt="HLLC 2024" aspect="16/9" rounded="rounded-none" />
+                </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
-                <ResponsiveImage src="/HLLC2024/6.png" alt="HLLC 2024" />
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2024/6.png" alt="HLLC 2024" aspect="16/9" rounded="rounded-none" />
+                </CardBody>
               </Card>
             </div>
           </div>
@@ -249,34 +254,44 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
         {/* Project 3 */}
         <motion.div
           id="project-3"
-          className="w-full flex flex-col lg:flex-row justify-start items-center mt-24 scroll-mt-48"
+          className="w-full min-h-screen flex items-center justify-start scroll-mt-48"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         >
           <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
-            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 grid-rows-2 px-0 md:px-8">
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/MaeChanProject/2.png" alt="MaeChan Project" />
+            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 px-0 md:px-8">
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/MaeChanProject/2.png" alt="MaeChan Project" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/MaeChanProject/3.png" alt="MaeChan Project" />
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/MaeChanProject/3.png" alt="MaeChan Project" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/MaeChanProject/4.png" alt="MaeChan Project" />
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/MaeChanProject/4.png" alt="MaeChan Project" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5">
-                <ResponsiveImage src="/MaeChanProject/5.png" alt="MaeChan Project" />
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/MaeChanProject/5.png" alt="MaeChan Project" aspect="16/9" rounded="rounded-none" />
+                </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7 overflow-hidden p-0">
                 <CardHeader className="absolute z-10 top-1 flex-col items-start">
                   <p className="text-tiny text-white/60 uppercase font-bold">Your day your way</p>
                   <h4 className="text-white/90 font-medium text-xl">Your checklist for better sleep</h4>
                 </CardHeader>
-                <ResponsiveImage src="/MaeChanProject/6.png" alt="MaeChan Project" />
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/MaeChanProject/6.png" alt="MaeChan Project" aspect="16/9" rounded="rounded-none" />
+                </CardBody>
               </Card>
             </div>
 
@@ -299,7 +314,7 @@ This project is developed by a team of four students, and I am responsible as bo
         {/* Project 4 */}
         <motion.div
           id="project-4"
-          className="w-full flex flex-col lg:flex-row justify-start items-center mt-24 mb-24 scroll-mt-48"
+          className="w-full min-h-screen flex items-center justify-start scroll-mt-48"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -321,23 +336,33 @@ This project is developed by a team of four students, and I am responsible as bo
               ]}
             />
 
-            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 grid-rows-2 px-0 md:px-8">
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/CafeManagement/2.png" alt="Cafe Management" />
+            <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 px-0 md:px-8">
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/CafeManagement/2.png" alt="Cafe Management" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/CafeManagement/3.png" alt="Cafe Management" />
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/CafeManagement/3.png" alt="Cafe Management" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
-              <Card className="col-span-12 sm:col-span-4">
-                <ResponsiveImage src="/CafeManagement/4.png" alt="Cafe Management" />
+              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/CafeManagement/4.png" alt="Cafe Management" aspect="4/3" rounded="rounded-none" />
+                </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5">
-                <ResponsiveImage src="/CafeManagement/5.png" alt="Cafe Management" />
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/CafeManagement/5.png" alt="Cafe Management" aspect="16/9" rounded="rounded-none" />
+                </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7">
-                <ResponsiveImage src="/CafeManagement/6.png" alt="Cafe Management" />
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/CafeManagement/6.png" alt="Cafe Management" aspect="16/9" rounded="rounded-none" />
+                </CardBody>
               </Card>
             </div>
           </div>
