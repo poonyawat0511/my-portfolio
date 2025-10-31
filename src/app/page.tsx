@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Aurora from "@/components/react-bits/Backgrounds/Aurora/Aurora";
 import { AuroraWrapper } from "./AuroraWrapper";
-import { Button, Link, Card, CardHeader, CardBody } from "@heroui/react";
+import { Button, Link, Card, CardBody } from "@heroui/react";
 import { motion } from "framer-motion";
 import GradientText from "@/components/react-bits/TextAnimations/GradientText/GradientText";
 import ResumeModal from "@/components/modals/ResumeModal";
@@ -15,7 +15,6 @@ import { SiNestjs, SiMongodb, SiNuxtdotjs, SiVuetify, SiSocketdotio } from "reac
 import { SiReact, SiExpo } from "react-icons/si";
 import { SiMysql } from "react-icons/si";
 import { SiBootstrap } from "react-icons/si";
-import Magnet from "@/components/react-bits/Animations/Magnet/Magnet";
 import { FaGolang } from "react-icons/fa6";
 import { ResponsiveImage } from "@/components/cards/ResponsiveImage";
 import { BiChevronRight } from "react-icons/bi";
@@ -90,45 +89,38 @@ export default function Home() {
             </GradientText>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-10 w-full">
-              <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <ResponsiveImage
-                  src="/HLLC2025/2.png"
-                  alt="HLLC 2025 Project Preview"
-                  priority
-                  aspect="16/9"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  rounded="rounded-tl-[3rem] rounded-br-[3rem]"
-                />
-              </Magnet>
+              <ResponsiveImage
+                src="/HLLC2025/2.png"
+                alt="HLLC 2025 Project Preview"
+                priority
+                aspect="16/9"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                rounded="rounded-tl-[3rem] rounded-br-[3rem]"
+              />
 
-              <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <ResponsiveImage
-                  src="/HLLC2024/6.png"
-                  alt="HLLC 2024 Project Preview"
-                  priority
-                  aspect="16/9"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  rounded="rounded-tl-[3rem] rounded-br-[3rem]"
-                />
-              </Magnet>
+              <ResponsiveImage
+                src="/HLLC2024/6.png"
+                alt="HLLC 2024 Project Preview"
+                priority
+                aspect="16/9"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                rounded="rounded-tl-[3rem] rounded-br-[3rem]"
+              />
 
-              <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <ResponsiveImage
-                  src="/MaeChanProject/1.png"
-                  alt="MaeChan Project Preview"
-                  aspect="16/9"
-                  rounded="rounded-tl-[3rem] rounded-br-[3rem]"
-                />
-              </Magnet>
+              <ResponsiveImage
+                src="/MaeChanProject/1.png"
+                alt="MaeChan Project Preview"
+                aspect="16/9"
+                rounded="rounded-tl-[3rem] rounded-br-[3rem]"
+              />
 
-              <Magnet padding={10} disabled={false} magnetStrength={2}>
-                <ResponsiveImage
-                  src="/CafeManagement/1.png"
-                  alt="Cafe Management Preview"
-                  aspect="16/9"
-                  rounded="rounded-tl-[3rem] rounded-br-[3rem]"
-                />
-              </Magnet>
+              <ResponsiveImage
+                src="/CafeManagement/1.png"
+                alt="Cafe Management Preview"
+                aspect="16/9"
+                rounded="rounded-tl-[3rem] rounded-br-[3rem]"
+              />
+
             </div>
           </div>
         </div>
@@ -148,33 +140,33 @@ export default function Home() {
           <div className="flex flex-col-reverse lg:flex-row justify-between items-center w-full gap-6 md:gap-8 lg:gap-10 p-0 md:p-10">
             {/* image grid */}
             <div className="w-full max-w-[1100px] gap-3 sm:gap-4 grid grid-cols-12 px-0 md:px-8">
-              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+              <Card className="col-span-12 sm:col-span-6 overflow-hidden p-0">
                 <CardBody className="p-0">
-                  <ResponsiveImage src="/HLLC2025/1.png" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" />
+                  <ResponsiveImage src="/HLLC2025/1.png" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" fillParent />
                 </CardBody>
               </Card>
 
-              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
-                <CardBody className="p-0">
-                  <ResponsiveImage src="/HLLC2025/10.jpeg" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" />
-                </CardBody>
-              </Card>
-
-              <Card className="col-span-12 sm:col-span-4 overflow-hidden p-0">
+              <Card className="col-span-12 sm:col-span-5 overflow-hidden p-0">
                 <CardBody className="p-0">
                   <ResponsiveImage src="/HLLC2025/3.jpeg" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" />
                 </CardBody>
               </Card>
 
-              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5 overflow-hidden p-0">
+              <Card isFooterBlurred className="w-full col-span-12 sm:col-span-2 overflow-hidden p-0">
                 <CardBody className="p-0">
-                  <ResponsiveImage src="/HLLC2025/7.jpeg" alt="HLLC 2025" aspect="16/9" rounded="rounded-none" />
+                  <ResponsiveImage src="/HLLC2025/10.jpeg" alt="HLLC 2025" aspect="1/2" rounded="rounded-none" fillParent />
                 </CardBody>
               </Card>
 
               <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7 overflow-hidden p-0">
                 <CardBody className="p-0">
-                  <ResponsiveImage src="/HLLC2025/2.png" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" />
+                  <ResponsiveImage src="/HLLC2025/2.png" alt="HLLC 2025" aspect="4/3" rounded="rounded-none" fillParent />
+                </CardBody>
+              </Card>
+
+              <Card className="col-span-12 sm:col-span-2 overflow-hidden p-0">
+                <CardBody className="p-0">
+                  <ResponsiveImage src="/HLLC2025/7.jpeg" alt="HLLC 2025" aspect="1/2" rounded="rounded-none" />
                 </CardBody>
               </Card>
             </div>
@@ -240,7 +232,7 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
 
               <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5 overflow-hidden p-0">
                 <CardBody className="p-0">
-                  <ResponsiveImage src="/HLLC2024/5.png" alt="HLLC 2024" aspect="16/9" rounded="rounded-none" />
+                  <ResponsiveImage src="/HLLC2024/5.png" alt="HLLC 2024" aspect="16/9" rounded="rounded-none" fillParent />
                 </CardBody>
               </Card>
 
@@ -282,15 +274,11 @@ freshmen at Mae Fah Luang University, enhancing engagement and participation.`}
 
               <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5 overflow-hidden p-0">
                 <CardBody className="p-0">
-                  <ResponsiveImage src="/MaeChanProject/5.png" alt="MaeChan Project" aspect="16/9" rounded="rounded-none" />
+                  <ResponsiveImage src="/MaeChanProject/5.png" alt="MaeChan Project" aspect="16/9" rounded="rounded-none" fillParent />
                 </CardBody>
               </Card>
 
               <Card isFooterBlurred className="w-full col-span-12 sm:col-span-7 overflow-hidden p-0">
-                <CardHeader className="absolute z-10 top-1 flex-col items-start">
-                  <p className="text-tiny text-white/60 uppercase font-bold">Your day your way</p>
-                  <h4 className="text-white/90 font-medium text-xl">Your checklist for better sleep</h4>
-                </CardHeader>
                 <CardBody className="p-0">
                   <ResponsiveImage src="/MaeChanProject/6.png" alt="MaeChan Project" aspect="16/9" rounded="rounded-none" />
                 </CardBody>
@@ -357,7 +345,7 @@ This project is developed by a team of four students, and I am responsible as bo
 
               <Card isFooterBlurred className="w-full col-span-12 sm:col-span-5 overflow-hidden p-0">
                 <CardBody className="p-0">
-                  <ResponsiveImage src="/CafeManagement/5.png" alt="Cafe Management" aspect="16/9" rounded="rounded-none" />
+                  <ResponsiveImage src="/CafeManagement/5.png" alt="Cafe Management" aspect="16/9" rounded="rounded-none" fillParent />
                 </CardBody>
               </Card>
 

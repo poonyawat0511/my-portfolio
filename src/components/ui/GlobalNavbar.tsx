@@ -41,7 +41,7 @@ export default function GlobalNavbar() {
                     <div className="flex items-center gap-x-3">
                         <h1 className="text-white font-extrabold text-2xl tracking-wide">TO BE</h1>
                         <RotatingText
-                            texts={["BackEnd!", "FrontEnd?", "FullStack?"]}
+                            texts={["Backend!", "Frontend?", "Fullstack?"]}
                             mainClassName="px-3 bg-cyan-300 text-black overflow-hidden py-2 justify-center rounded-lg font-bold text-lg"
                             staggerFrom="last"
                             initial={{ y: "100%" }}
