@@ -16,7 +16,6 @@ import { SiMysql } from "react-icons/si";
 import { SiBootstrap } from "react-icons/si";
 import { FaGolang } from "react-icons/fa6";
 import { BiChevronDown, BiChevronRight } from "react-icons/bi";
-import SkillsModal from "@/components/modals/SkillsModal";
 import SkillCard, { SkillItem } from "@/components/cards/SkillCard";
 import { getStudyStatus } from "@/utils/studyStatus";
 
@@ -51,7 +50,6 @@ const databaseItems: SkillItem[] = [
 
 export default function Home() {
   const [open, setOpen] = useState(false);
-  const [skillModal, setSkillModal] = useState(false);
   const status = getStudyStatus(2022, 8);
   const [hideArrow, setHideArrow] = useState(false);
   useEffect(() => {
@@ -257,7 +255,6 @@ This project is developed by a team of four students, and I am responsible as bo
 
       {/* pdf modal */}
       <ResumeModal isOpen={open} onClose={() => setOpen(false)} />
-      <SkillsModal isOpen={skillModal} onClose={() => setSkillModal(false)} />
     </div>
   );
 }
