@@ -43,10 +43,9 @@ export default function Footer({ id }: FooterProps) {
                         </div>
 
                         <div className="flex items-center gap-2 text-white">
-                            <IconLink label="Facebook" href="https://www.facebook.com/poonyawat.khomlek" icon={<SiFacebook size={20} />} />
-                            <IconLink label="Instagram" href="https://www.instagram.com/mxr_query" icon={<SiInstagram size={20} />} />
-                            <IconLink label="LinkedIn" href="https://www.linkedin.com/in/poonyawat-khomlek-b1b496326" icon={<SiLinkedin size={20} />} />
-                            <IconLink label="GitHub" href="https://github.com/poonyawat0511" icon={<SiGithub size={20} />} />
+                            <IconLink label="Facebook" href="https://www.facebook.com/poonyawat.khomlek" icon={<SiFacebook size={20} className="text-[#1d3be6]"/>} />
+                            <IconLink label="Instagram" href="https://www.instagram.com/mxr_query" icon={<SiInstagram size={20} className="text-[#d43e91]"/>} />
+                            <IconLink label="LinkedIn" href="https://www.linkedin.com/in/poonyawat-khomlek-b1b496326" icon={<SiLinkedin size={20} className="text-[#1a8deb]"/>} />
                         </div>
                     </div>
 
@@ -79,7 +78,7 @@ function IconLink({
             aria-label={label}
             title={label}
             isIconOnly
-            variant="flat"
+            variant="solid"
             radius="full"
             className="h-10 w-10 text-foreground"
         >
