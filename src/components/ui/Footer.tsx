@@ -5,7 +5,6 @@ import {
     SiFacebook,
     SiInstagram,
     SiLinkedin,
-    SiGithub,
 } from "react-icons/si";
 
 type FooterProps = {
