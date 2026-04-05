@@ -14,8 +14,10 @@ import {
 import RotatingText from "@/components/react-bits/TextAnimations/RotatingText/RotatingText";
 
 const menuItems = [
-    { label: "Home", href: "/" },
+    { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
 ];
 
@@ -41,7 +43,7 @@ export default function GlobalNavbar() {
                     <div className="flex items-center gap-x-3">
                         <h1 className="text-white font-extrabold text-2xl tracking-wide">TO BE</h1>
                         <RotatingText
-                            texts={["Backend!", "Frontend?", "Fullstack?"]}
+                            texts={["Fullstack", "Backend", "Frontend", "Mobile"]}
                             mainClassName="px-3 bg-cyan-300 text-black overflow-hidden py-2 justify-center rounded-lg font-bold text-lg"
                             staggerFrom="last"
                             initial={{ y: "100%" }}
@@ -52,6 +54,7 @@ export default function GlobalNavbar() {
                             transition={{ type: "spring", damping: 30, stiffness: 400 }}
                             rotationInterval={2000}
                         />
+                         <h1 className="text-white font-extrabold text-2xl tracking-wide">Developer</h1>
                     </div>
                 </NavbarBrand>
             </NavbarContent>

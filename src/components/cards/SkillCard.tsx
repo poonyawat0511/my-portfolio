@@ -28,13 +28,13 @@ export default function SkillCard({
         isBlurred
         shadow="sm"
         className="
-          w-full overflow-hidden rounded-[calc(theme(borderRadius.2xl)-1px)]
+          w-full h-full min-h-0 overflow-hidden rounded-[calc(theme(borderRadius.2xl)-1px)]
           border border-white/[0.06]
           bg-black/40 backdrop-blur-xl
           shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_10px_30px_-20px_rgba(0,0,0,0.6)]
         "
       >
-        <CardBody className="p-6">
+        <CardBody className="p-6 h-fit min-h-0">
           <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
 
           {/* Icons-only grid */}

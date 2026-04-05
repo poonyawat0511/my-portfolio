@@ -4,8 +4,8 @@ import { Card, CardBody, Divider, Link, Button } from "@heroui/react";
 import {
     SiFacebook,
     SiInstagram,
-    SiLinkedin,
 } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 
 type FooterProps = {
     id: string;
@@ -44,7 +44,7 @@ export default function Footer({ id }: FooterProps) {
                         <div className="flex items-center gap-2 text-white">
                             <IconLink label="Facebook" href="https://www.facebook.com/poonyawat.khomlek" icon={<SiFacebook size={20} className="text-[#1d3be6]"/>} />
                             <IconLink label="Instagram" href="https://www.instagram.com/mxr_query" icon={<SiInstagram size={20} className="text-[#d43e91]"/>} />
-                            <IconLink label="LinkedIn" href="https://www.linkedin.com/in/poonyawat-khomlek-b1b496326" icon={<SiLinkedin size={20} className="text-[#1a8deb]"/>} />
+                            <IconLink label="LinkedIn" href="https://www.linkedin.com/in/poonyawat-khomlek-b1b496326" icon={<FaLinkedin size={20} className="text-[#1a8deb]"/>} />
                         </div>
                     </div>
 

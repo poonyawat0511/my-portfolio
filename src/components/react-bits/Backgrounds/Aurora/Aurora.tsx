@@ -137,10 +137,14 @@ void main() {
 }
 `;
 
-export default function Aurora(props: AuroraProps) {
-  const { colorStops = ["#00d8ff", "#7cff67", "#00d8ff"], amplitude = 1.0 } =
-    props;
+    const DEFAULT_COLOR_STOPS: [string, string, string] = [
+      "#00d8ff",
+      "#7cff67",
+      "#00d8ff",
+    ];
+    const DEFAULT_AMPLITUDE = 1.0;
 
+export default function Aurora(props: AuroraProps) {
   const propsRef = useRef(props);
   propsRef.current = props;
 
@@ -152,7 +156,7 @@ export default function Aurora(props: AuroraProps) {
 
     const renderer = new Renderer();
     const gl = renderer.gl;
-    gl.clearColor(1, 1, 1, 1);
+    gl.clearColor(0, 0, 0, 1);
 
     function resize() {
       if (!ctn) return;
@@ -167,7 +171,8 @@ export default function Aurora(props: AuroraProps) {
       data: new Float32Array([0, 0, 2, 0, 0, 2]),
     });
 
-    const colorStopsArray = colorStops.map((hex) => {
+    const initialStops = propsRef.current.colorStops ?? DEFAULT_COLOR_STOPS;
+    const colorStopsArray = initialStops.map((hex) => {
       const c = new Color(hex);
       return [c.r, c.g, c.b] as [number, number, number];
     });
@@ -177,7 +182,7 @@ export default function Aurora(props: AuroraProps) {
       fragment: FRAG,
       uniforms: {
         uTime: { value: 0 },
-        uAmplitude: { value: amplitude },
+        uAmplitude: { value: propsRef.current.amplitude ?? DEFAULT_AMPLITUDE },
         uColorStops: { value: colorStopsArray },
       },
     });
@@ -194,7 +199,7 @@ export default function Aurora(props: AuroraProps) {
       program.uniforms.uTime.value = time * speed * 0.1;
 
       program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
-      const stops = propsRef.current.colorStops ?? colorStops;
+      const stops = propsRef.current.colorStops ?? DEFAULT_COLOR_STOPS;
       program.uniforms.uColorStops.value = stops.map((hex) => {
         const c = new Color(hex);
         return [c.r, c.g, c.b] as [number, number, number];
@@ -212,7 +217,7 @@ export default function Aurora(props: AuroraProps) {
 
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [amplitude, colorStops]);
+  }, []);
 
   return <div ref={ctnDom} className="w-full h-full" />;
 }

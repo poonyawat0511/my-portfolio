@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function ProjectInfoCard({
   title = "Project Title",
   subtitle = "Short project description",
-  link = "#",
+  link,
   technologies = [],
 }: {
   title?: string;
@@ -68,29 +68,31 @@ export default function ProjectInfoCard({
               </div>
             )}
 
-            <div className="mt-auto overflow-hidden">
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Button
-                  as="a"
-                  href={link}
-                  className="
-                    rounded-full flex items-center gap-2 text-white justify-start
-                    bg-transparent hover:bg-transparent active:bg-transparent focus:bg-transparent
-                    data-[hover=true]:bg-transparent focus-visible:bg-transparent
-                  "
-                  variant="light"
+            {link ? (
+              <div className="mt-auto overflow-hidden">
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <span className="rounded-full p-2 bg-white/90 dark:bg-white/80 flex items-center justify-center">
-                    <img src="/github.svg" alt="GitHub" className="w-5 h-5" />
-                  </span>
-                  Github
-                </Button>
-              </motion.div>
-            </div>
+                  <Button
+                    as="a"
+                    href={link}
+                    className="
+                      rounded-full flex items-center gap-2 text-white justify-start
+                      bg-transparent hover:bg-transparent active:bg-transparent focus:bg-transparent
+                      data-[hover=true]:bg-transparent focus-visible:bg-transparent
+                    "
+                    variant="light"
+                  >
+                    <span className="rounded-full p-2 bg-white/90 dark:bg-white/80 flex items-center justify-center">
+                      <img src="/github.svg" alt="GitHub" className="w-5 h-5" />
+                    </span>
+                    Github
+                  </Button>
+                </motion.div>
+              </div>
+            ) : null}
           </div>
         </CardBody>
       </Card>
