@@ -38,6 +38,7 @@ import { FaJava } from "react-icons/fa";
 import { BiChevronDown, BiChevronRight } from "react-icons/bi";
 import SkillCard, { SkillItem } from "@/components/cards/SkillCard";
 import { getStudyStatus } from "@/utils/studyStatus";
+import Image from "next/image";
 
 type ProjectInfoCardProps = ComponentProps<typeof ProjectInfoCard>;
 type SkillCardProps = ComponentProps<typeof SkillCard>;
@@ -314,7 +315,7 @@ export default function Home() {
                   variant="light"
                 >
                   <span className="rounded-full p-2 bg-white flex items-center justify-center">
-                    <img src="/github.svg" alt="GitHub" className="w-5 h-5" />
+                    <Image src="/github.svg" alt="GitHub" className="w-5 h-5" width={20} height={20}/>
                   </span>
                   Github
                 </Button>
@@ -337,22 +338,22 @@ export default function Home() {
                     Experience Highlights
                   </GradientText>
 
-                  <div className="relative pl-4">
-                    <div className="absolute left-0 top-1 bottom-1 w-px bg-white/10" />
+                  <div className="relative pl-6">
+                    <div className="absolute left-4 top-1 bottom-1 w-px bg-white/10" />
 
                     <div className="space-y-5">
                       <div className="relative">
-                        <div className="absolute -left-[9px] top-1.5 h-2 w-2 rounded-full bg-white/50" />
+                        <div className="absolute -left-3 top-1.5 h-2 w-2 rounded-full bg-white/50" />
                         <p className="text-white font-semibold">OceanLife — Online Payment</p>
                         <p className="text-white/70 text-sm">Full-stack internal system (Java + React) for accounting workflows.</p>
                       </div>
                       <div className="relative">
-                        <div className="absolute -left-[9px] top-1.5 h-2 w-2 rounded-full bg-white/50" />
+                        <div className="absolute -left-3 top-1.5 h-2 w-2 rounded-full bg-white/50" />
                         <p className="text-white font-semibold">Land Management System (LMS)</p>
                         <p className="text-white/70 text-sm">Go Fiber + Nuxt.js, JWT/RBAC, and document storage integration.</p>
                       </div>
                       <div className="relative">
-                        <div className="absolute -left-[9px] top-1.5 h-2 w-2 rounded-full bg-white/50" />
+                        <div className="absolute -left-3 top-1.5 h-2 w-2 rounded-full bg-white/50" />
                         <p className="text-white font-semibold">HLLC 2025 — Backend</p>
                         <p className="text-white/70 text-sm">Real-time chat, CRUD APIs, MongoDB, and admin features.</p>
                       </div>

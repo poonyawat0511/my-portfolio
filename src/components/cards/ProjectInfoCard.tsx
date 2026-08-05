@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardBody, Button } from "@heroui/react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function ProjectInfoCard({
   title = "Project Title",
@@ -42,8 +43,8 @@ export default function ProjectInfoCard({
           shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03),0_10px_30px_-20px_rgba(0,0,0,0.6)]
         "
       >
-        <CardBody className="h-full">
-          <div className="flex h-full flex-col gap-3">
+        <CardBody className="h-full p-6">
+          <div className="flex h-full flex-col gap-4">
             <h3 className="font-semibold text-foreground/90 text-3xl">{title}</h3>
 
             <p className="text-medium text-foreground/80 whitespace-pre-line">
@@ -51,7 +52,7 @@ export default function ProjectInfoCard({
             </p>
 
             {technologies.length > 0 && (
-              <div className="flex flex-wrap gap-3 mt-1 ml-1">
+              <div className="flex flex-wrap gap-3 mt-2">
                 {technologies.map((tech) => (
                   <span
                     key={tech.name}
@@ -69,7 +70,7 @@ export default function ProjectInfoCard({
             )}
 
             {link ? (
-              <div className="mt-auto overflow-hidden">
+              <div className="mt-auto pt-2 overflow-hidden">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
@@ -86,7 +87,7 @@ export default function ProjectInfoCard({
                     variant="light"
                   >
                     <span className="rounded-full p-2 bg-white/90 dark:bg-white/80 flex items-center justify-center">
-                      <img src="/github.svg" alt="GitHub" className="w-5 h-5" />
+                      <Image src="/github.svg" alt="GitHub" className="w-5 h-5" width={20} height={20} />
                     </span>
                     Github
                   </Button>
